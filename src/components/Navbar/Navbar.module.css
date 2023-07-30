@@ -3,6 +3,9 @@
     background-color: grey;
 
 }
-.item{
-
+.item a{
+    color: white;
+}
+.item .active{
+    color: red;
 }

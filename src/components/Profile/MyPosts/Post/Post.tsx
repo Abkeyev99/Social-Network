@@ -3,7 +3,7 @@ import s from './Post.module.css'
 
 type MessageType = {
     message: string
-    like: string
+    likeCounte: string
 }
 
 const Post = (props: MessageType) => {
@@ -12,7 +12,7 @@ const Post = (props: MessageType) => {
             <img src="https://i.pinimg.com/736x/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"/>
             {props.message}
             <div>
-                <span>like {props.like}</span>
+                <span>like {props.likeCounte}</span>
             </div>
         </div>
     );
