@@ -1,18 +1,13 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from "./Profileinfo/ProfileInfo";
-import {ActionsTypes, ProfilePageType} from "../../redux/state";
-
-
+import {ActionsTypes, ProfilePageType, StoreType} from "../../redux/store";
 
 export type ProfileType = {
-    profilePage:ProfilePageType
+    profilePage: ProfilePageType
     dispatch: (action: ActionsTypes) => void
 
-
 }
-
-
 
 
 const Profile = (props: ProfileType) => {
@@ -26,7 +21,6 @@ const Profile = (props: ProfileType) => {
             />
         </div>
     );
-
 };
 
 export default Profile;
