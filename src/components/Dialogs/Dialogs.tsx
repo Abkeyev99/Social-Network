@@ -9,7 +9,7 @@ export type DialogType = {
     dialogsPage:DialogsPageType
     sendMessage:() => void
     updateNewMessageBody: (body: string) => void
-    store:StoreType
+
 }
 
 const Dialogs = (props: DialogType) => {
@@ -25,7 +25,7 @@ const Dialogs = (props: DialogType) => {
         props.sendMessage()
     }
 
-    let onNewMessageChange = (e:any) => {
+    let onNewMessageChange  = (e:any) => {
         let body = e.target.value
         props.updateNewMessageBody(body)
     }
@@ -40,7 +40,7 @@ const Dialogs = (props: DialogType) => {
                 <div>{messagesElements}</div>
                 <div>
                     <div><textarea
-                        onChange={onNewMessageChange}
+                        onChange={onNewMessageChange }
                         value={newMessagesBody}
                         placeholder='Enter your massage'>
                     </textarea></div>

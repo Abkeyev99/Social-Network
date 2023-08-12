@@ -34,6 +34,6 @@ export const profileReducer = (state:ProfilePageType = initialState, action:Acti
     }
 }
 export const addPostActionCreator = () => ({type: ADD_POST} as const)
-export const updateNewPostTextActionCreator = (newText: string) =>
+export const updateNewPostTextActionCreator = (newText: any) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
 
