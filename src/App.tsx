@@ -11,15 +11,7 @@ import Settings from "./components/Settings/Settings";
 import  {ActionsTypes, StateType, StoreType} from "./redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-
-export type AppPropsType = {
-    state: StateType
-    dispatch: (action: ActionsTypes) => void
-    store:any
-
-}
-
-function App(props: AppPropsType) {
+function App() {
     return (
         <div className="app-wrapper">
             <Header/>
@@ -27,11 +19,8 @@ function App(props: AppPropsType) {
             <div className="app-wrapper-content">
                 <Routes>
 
-                    <Route path="/profile" element={<Profile
-                        store={props.store}
-                    />}/>
-                    <Route path="/dialog" element={<DialogsContainer
-                        store={props.store} />}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/dialog" element={<DialogsContainer/>}/>
 
 
                     <Route path="/news" element={<News/>}/>
