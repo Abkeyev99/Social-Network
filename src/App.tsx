@@ -30,7 +30,7 @@ function App(props: AppPropsType) {
                     <Route path="/profile" element={<Profile
                         store={props.store}
                     />}/>
-                    <Route path="/dialogs" element={<DialogsContainer
+                    <Route path="/dialog" element={<DialogsContainer
                         store={props.store} />}/>
 
 

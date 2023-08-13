@@ -5,9 +5,7 @@ import {ActionsTypes, ProfilePageType, StateType, StoreType} from "../../redux/s
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 export type ProfileType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionsTypes) => void
-    store:StateType
+    store:any
 
 }
 
