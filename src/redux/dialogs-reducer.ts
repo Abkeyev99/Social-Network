@@ -18,20 +18,23 @@ let initialState = {
         {id: 2, message: "How are you?"},
         {id: 3, message: "Beautiful weather today!"},
     ],
-    newMessageBody:"",
+    newMessageBody: "",
 };
 
-export const dialogsReducer = (state:any = initialState, action: ActionsTypes) => {
-
+export const dialogsReducer = (state: any = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case UPDATE_NEW_MASSAGE_TEXT:
-            state.newMassageBody = action.body
-            return state
+            return{
+                ...state,
+                newMassageBody: action.body
+            }
         case SEND_MASSAGE:
             let body = state.newMassageBody
-            state.newMassageBody = ''
-            state.messages.push({id: 4, message: body},)
-            return state
+            return {
+                ...state,
+                newMassageBody: '',
+                messages: [...state.messages,{id: 4, message: body}]
+            }
         default:
             return state
     }
