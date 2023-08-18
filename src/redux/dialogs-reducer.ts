@@ -1,6 +1,6 @@
-import {ActionsTypes, DialogsPageType, StateType, StoreType} from "./store";
+import {ActionsTypes} from "./store";
 
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEXT';
 const SEND_MASSAGE = 'SEND_MASSAGE';
 
 
@@ -23,7 +23,7 @@ let initialState = {
 
 export const dialogsReducer = (state: any = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case UPDATE_NEW_MASSAGE_TEXT:
+        case UPDATE_NEW_MESSAGE_TEXT:
             return{
                 ...state,
                 newMassageBody: action.body
@@ -41,4 +41,4 @@ export const dialogsReducer = (state: any = initialState, action: ActionsTypes) 
 };
 export const sendMessageActionCreator = () => ({type: SEND_MASSAGE}) as const
 export const updateNewMessageBodyActionCreator = (body: string) =>
-    ({type: UPDATE_NEW_MASSAGE_TEXT, body: body}) as const
+    ({type: UPDATE_NEW_MESSAGE_TEXT, body: body}) as const

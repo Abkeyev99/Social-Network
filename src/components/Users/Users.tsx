@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './users.module.css';
+import {UsersPropsType} from "./UsersContainer";
 
-const Users = (props:any) => {
-    if(props.users.length === 0){
+const Users = (props: UsersPropsType) => {
+    if (props.usersPage.users.length === 0) {
         props.setUsers(
             [
                 {
                     id: 1,
-                    photoUrl:'https://pikuco.ru/upload/test_stable/e13/e131e3db319749d39d7c719e5da6a7ac.webp',
+                    photoUrl: 'https://pikuco.ru/upload/test_stable/e13/e131e3db319749d39d7c719e5da6a7ac.webp',
                     followed: false,
                     fillName: "Artem",
                     status: "i am a boss",
@@ -15,7 +16,7 @@ const Users = (props:any) => {
                 },
                 {
                     id: 2,
-                    photoUrl:'https://pikuco.ru/upload/test_stable/e13/e131e3db319749d39d7c719e5da6a7ac.webp',
+                    photoUrl: 'https://pikuco.ru/upload/test_stable/e13/e131e3db319749d39d7c719e5da6a7ac.webp',
                     followed: true,
                     fillName: "Dima",
                     status: "i am a boss too",
@@ -23,7 +24,7 @@ const Users = (props:any) => {
                 },
                 {
                     id: 3,
-                    photoUrl:'https://pikuco.ru/upload/test_stable/e13/e131e3db319749d39d7c719e5da6a7ac.webp',
+                    photoUrl: 'https://pikuco.ru/upload/test_stable/e13/e131e3db319749d39d7c719e5da6a7ac.webp',
                     followed: true,
                     fillName: "Andrew",
                     status: "i am a boss to",
@@ -33,25 +34,26 @@ const Users = (props:any) => {
             ],
         )
     }
-
-
-
     return (
         <div>{
-            props.users.map(u=> <div key={u.id}>\
+            props.usersPage.users.map(u => <div key={u.id}>
                 <span></span>
                 <div>
                     <img src={u.photoUrl} className={styles.userPhoto}/>
                 </div>
                 <div>
                     {u.followed
-                        ? <button onClick={()=> {props.unfollow(u.id)}}>Unfollow</button>
-                        : <button onClick={()=> {props.follow(u.id)}}>Follow</button>}
+                        ? <button onClick={() => {
+                            props.unfollow(u.id)
+                        }}>Unfollow</button>
+                        : <button onClick={() => {
+                            props.follow(u.id)
+                        }}>Follow</button>}
 
                 </div>
                 <span>
                     <span>
-                        <div>{u.fullName}</div><div>{u.status}</div>
+                        <div>{u.fillName}</div><div>{u.status}</div>
                     </span>
                     <span>
                         <div>{u.location.country}</div>

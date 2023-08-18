@@ -1,6 +1,7 @@
 import {addPostActionCreator, profileReducer, updateNewPostTextActionCreator} from "./profile-reducer";
 import {dialogsReducer, sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 // export type NewPostPropsType = {
 //     id: number
@@ -51,7 +52,10 @@ export type ActionsTypes =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof updateNewPostTextActionCreator>|
     ReturnType<typeof updateNewMessageBodyActionCreator> |
-    ReturnType<typeof sendMessageActionCreator>
+    ReturnType<typeof sendMessageActionCreator>|
+    ReturnType<typeof followAC>|
+    ReturnType<typeof unfollowAC>|
+    ReturnType<typeof setUsersAC>
 
 
 

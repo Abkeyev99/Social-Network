@@ -4,8 +4,9 @@ const UNFOLLOW = 'UNFOLLOW';
 const FOLLOW = 'FOLLOW';
 const SET_USERS = 'SET_USERS';
 
-type UsersType = {
+export type UsersType = {
     id: number,
+    photoUrl: string,
     followed: boolean,
     fillName: string,
     status: string,
@@ -15,14 +16,16 @@ type LocationType = {
     city: string
     country: string
 }
+export type InitialStateType = {
+    users: Array<UsersType>
+}
 
-let initialState = {
-
+let initialState: InitialStateType = {
+    users: []
 }
 
 
-export const usersReducer = (state: UsersType = initialState, action: ActionsTypes) => {
-
+export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -34,7 +37,6 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
                     return u
                 })
             }
-
         case UNFOLLOW:
             return {
                 ...state,
@@ -45,7 +47,6 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
                     return u
                 })
             }
-
         case SET_USERS: {
             return {...state, users: [...state.users, ...action.users]}
         }
@@ -54,7 +55,7 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
             return state
     }
 }
-export const followAC = (userId: any) => ({type: FOLLOW, userId} as const)
-export const unfollowAC = (userId: any) => ({type: UNFOLLOW, userId} as const)
-export const setUsersAC = (users: any) => ({type: SET_USERS, users} as const)
+export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
+export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
+export const setUsersAC = (users: Array<UsersType>) => ({type: SET_USERS, users} as const)
 
