@@ -3,14 +3,6 @@ import {dialogsReducer, sendMessageActionCreator, updateNewMessageBodyActionCrea
 import {sidebarReducer} from "./sidebar-reducer";
 import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
-// export type NewPostPropsType = {
-//     id: number
-//     message: string
-//     likesCount: number
-// }
-// export type AddPostPropsType = {
-//     newPost: NewPostPropsType
-// }
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
