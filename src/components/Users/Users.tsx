@@ -1,78 +1,56 @@
 import React from 'react';
 import styles from './users.module.css';
-import {UsersPropsType} from "./UsersContainer";
-import axios from "axios";
 import userPhoto from '../../assets/images/imagAva.png'
 
-class Users extends React.Component<UsersPropsType> {
 
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage.currentPage}&count=${this.props.usersPage.currentPage}`)
-            .then(response => {
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalUsersCount)
-            })
+const Users = (props:any) => {
+    let pagesCount = Math.ceil(props.usersPage.totalUsersCount / props.usersPage.pageSize);
+
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
-
-    onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${pageNumber}`)
-            .then(response => {
-                this.props.setUsers(response.data.items)
-            })
-    }
-
-    render() {
-        let pagesCount = Math.ceil(this.props.usersPage.totalUsersCount / this.props.usersPage.pageSize);
-        let pages = []
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-
-        return (
+    return (
+        <div>
             <div>
-                <div>
-                    {pages.map(p => {
-                        return <span
-                            className={this.props.usersPage.currentPage === p && styles.selectedPage}
-                            onClick={(e) => {
-                                this.onPageChanged(p);
-                            }}
-                        >{p}</span>
-                    })}
-                </div>
-                {
-                    this.props.usersPage.users.map(u => <div key={u.id}>
-                        <span></span>
-                        <div>
-                            <img src={u.photoUrl ! == null ? u.photoUrl : userPhoto}
-                                 className={styles.userPhoto}/>
-                        </div>
-                        <div>
-                            {u.followed
-                                ? <button onClick={() => {
-                                    this.props.unfollow(u.id)
-                                }}>Unfollow</button>
-                                : <button onClick={() => {
-                                    this.props.follow(u.id)
-                                }}>Follow</button>}
-
-                        </div>
-                        <span>
-                    <span>
-                        <div>{u.fillName}</div>
-                        <div>{u.status}</div>
-                    </span>
-                    <span>
-                        <div>{"u.location.country"}</div>
-                        <div>{"u.location.city"}</div>
-                    </span>
-                </span>
-                    </div>)
-                }
+                {pages.map(p => {
+                    return <span className={props.usersPage.currentPage === p && styles.selectedPage}
+                                 onClick={(e) => {
+                                     props.onPageChanged(p);
+                                 }}
+                    >{p}</span>
+                })}
             </div>
-        );
-    }
+            {
+                props.usersPage.users.map( u => <div key={u.id}>
+                    <span></span>
+                    <div>
+                        <img src={u.photoUrl ! == null ? u.photoUrl : userPhoto}
+                             className={styles.userPhoto}/>
+                    </div>
+                    <div>
+                        {u.followed
+                            ? <button onClick={() => {
+                                props.unfollow(u.id)
+                            }}>Unfollow</button>
+                            : <button onClick={() => {
+                                props.follow(u.id)
+                            }}>Follow</button>}
+                    </div>
+                    <span>
+    <span>
+        <div>{u.fillName}</div>
+    <div>{u.status}</div>
+    </span>
+    <span>
+    <div>{"u.location.country"}</div>
+    <div>{"u.location.city"}</div>
+    </span>
+    </span>
+                </div>)
+            }
+        </div>
+    );
 };
 
 export default Users;
