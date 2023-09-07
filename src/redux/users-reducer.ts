@@ -30,10 +30,10 @@ export type InitialStateType = {
 }
 
 export let initialState: InitialStateType = {
-    users: [],
+    users: [ ],
     pageSize: 5,
-    totalUsersCount: 0,
-    currentPage: 1,
+    totalUsersCount: 21,
+    currentPage: 2,
     isFetching:false
 }
 

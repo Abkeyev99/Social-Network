@@ -1,9 +1,20 @@
 import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/imagAva.png'
+import {InitialStateType} from "../../redux/users-reducer";
 
 
-const Users = (props:any) => {
+export type UsersPropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (pageNumber: number) => void
+    usersPage: InitialStateType
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+}
+
+const Users = (props: UsersPropsType) => {
     let pagesCount = Math.ceil(props.usersPage.totalUsersCount / props.usersPage.pageSize);
 
     let pages = []
@@ -13,8 +24,9 @@ const Users = (props:any) => {
     return (
         <div>
             <div>
+
                 {pages.map(p => {
-                    return <span className={props.usersPage.currentPage === p && styles.selectedPage}
+                    return <span className={props.usersPage.currentPage === p ? styles.selectedPage : ''}
                                  onClick={(e) => {
                                      props.onPageChanged(p);
                                  }}
@@ -22,10 +34,9 @@ const Users = (props:any) => {
                 })}
             </div>
             {
-                props.usersPage.users.map( u => <div key={u.id}>
-                    <span></span>
+                props.usersPage.users.map(u => <div key={u.id}>
                     <div>
-                        <img src={u.photoUrl ! == null ? u.photoUrl : userPhoto}
+                        <img src={u.photoUrl ! == null ? userPhoto : u.photoUrl}
                              className={styles.userPhoto}/>
                     </div>
                     <div>
@@ -43,7 +54,7 @@ const Users = (props:any) => {
     <div>{u.status}</div>
     </span>
     <span>
-    <div>{"u.location.country"}</div>
+    <div>{u.fillName}</div>
     <div>{"u.location.city"}</div>
     </span>
     </span>
