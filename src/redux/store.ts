@@ -1,4 +1,4 @@
-import {addPostActionCreator, profileReducer, updateNewPostTextActionCreator} from "./profile-reducer";
+import {addPostActionCreator, profileReducer, setUsersProfile, updateNewPostTextActionCreator} from "./profile-reducer";
 import {dialogsReducer, sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
@@ -57,7 +57,8 @@ export type ActionsTypes =
     ReturnType<typeof setUsers>|
     ReturnType<typeof setCurrentPage>|
     ReturnType<typeof setTotalUsersCount>|
-    ReturnType<typeof toggleIsFetching>
+    ReturnType<typeof toggleIsFetching>|
+    ReturnType<typeof setUsersProfile>
 
 
 

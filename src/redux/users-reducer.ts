@@ -13,9 +13,12 @@ type LocationType = {
 }
 export type UserType = {
     id: number,
-    photoUrl: string,
+    photos: {
+        small: any
+        large: any
+    }
     followed: boolean,
-    fillName: string,
+    name: string,
     status: string,
     location: LocationType
 }
@@ -31,9 +34,9 @@ export type InitialStateType = {
 
 export let initialState: InitialStateType = {
     users: [ ],
-    pageSize: 5,
-    totalUsersCount: 21,
-    currentPage: 2,
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1,
     isFetching:false
 }
 

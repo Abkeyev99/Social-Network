@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/imagAva.png'
 import {InitialStateType} from "../../redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 
 export type UsersPropsType = {
@@ -16,10 +17,12 @@ export type UsersPropsType = {
 
 const Users = (props: UsersPropsType) => {
     let pagesCount = Math.ceil(props.usersPage.totalUsersCount / props.usersPage.pageSize);
-
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
+    }
+    let user =(user:any)=>{
+        console.log(user)
     }
     return (
         <div>
@@ -30,14 +33,17 @@ const Users = (props: UsersPropsType) => {
                                  onClick={(e) => {
                                      props.onPageChanged(p);
                                  }}
-                    >{p}</span>
+                    >{p}     <button onClick={()=>{user(p)}}>+</button> </span>
                 })}
             </div>
             {
                 props.usersPage.users.map(u => <div key={u.id}>
                     <div>
-                        <img src={u.photoUrl ! == null ? userPhoto : u.photoUrl}
-                             className={styles.userPhoto}/>
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.large ! == null ? userPhoto : u.photos.large}
+                                 className={styles.userPhoto}/>
+
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed
@@ -49,17 +55,11 @@ const Users = (props: UsersPropsType) => {
                             }}>Follow</button>}
                     </div>
                     <span>
-    <span>
-        <div>{u.fillName}</div>
-    <div>{u.status}</div>
-    </span>
-    <span>
-    <div>{u.fillName}</div>
-    <div>{"u.location.city"}</div>
-    </span>
-    </span>
-                </div>)
-            }
+         <div>{u.name}</div>
+          <div>{u.status}</div>
+                   </span>
+                </div>)}
+
         </div>
     );
 };
