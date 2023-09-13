@@ -21,9 +21,9 @@ const Users = (props: UsersPropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-    let user =(user:any)=>{
+  /*  let user =(user:any)=>{
         console.log(user)
-    }
+    }*/
     return (
         <div>
             <div>
@@ -33,14 +33,14 @@ const Users = (props: UsersPropsType) => {
                                  onClick={(e) => {
                                      props.onPageChanged(p);
                                  }}
-                    >{p}     <button onClick={()=>{user(p)}}>+</button> </span>
+                    >{p}   {/*  <button onClick={()=>{user(p)}}>+</button>*/} </span>
                 })}
             </div>
             {
                 props.usersPage.users.map(u => <div key={u.id}>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.large ! == null ? userPhoto : u.photos.large}
+                            <img src={u.photos.small ! == null ? userPhoto : u.photos.small}
                                  className={styles.userPhoto}/>
 
                         </NavLink>
